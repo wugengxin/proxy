@@ -89,6 +89,9 @@ a read request coupled with the **handle_upstream_read** method as the
 associated completion handler.
 
 
+![ScreenShot](http://www.partow.net/images/tcpproxy_state_greenphase_diagram.png?raw=true "TCP Proxy Green Phase Diagram - Copyright Arash Partow")
+
+
 #### The Red Phase - Client To Proxy To Remote Server Data Flow
 This phase is engaged when data from the Client (aka down-stream end point)
 arrives at the proxy. Once some amount of data is ready, the I/O service will
@@ -99,6 +102,9 @@ write request has been completed, the I/O service will invoke the **handle_upstr
 completion handler. This handler will complete the cycle for the red phase by
 re-registering a read request coupled with the **handle_downstream_read** method
 as the associated completion handler.
+
+
+![ScreenShot](http://www.partow.net/images/tcpproxy_state_redphase_diagram.png?raw=true "TCP Proxy Red Phase Diagram - Copyright Arash Partow")
 
 
 #### Bridge Shutdown Process
