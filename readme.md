@@ -71,8 +71,14 @@ completion handler. This handler will in turn proceed to register two
 asynchronous read requests coupled with the completion handlers
 **handle_downstream_read** and **handle_upstream_read** with the I/O service,
 one for data coming from the client, the other being for data coming from
-the remote server respectively. Based on which end point data arrives at the
-proxy one of the following phases will be engaged:
+the remote server respectively.
+
+
+![ScreenShot](http://www.partow.net/images/tcpproxy_state_bluephase_diagram.png?raw=true "TCP Proxy Blue Phase Diagram - Copyright Arash Partow")
+
+
+Based on which-end point data arrives at the proxy, one of the following
+phases will be engaged:
 
 1. Green Phase
 2. Red Phase
