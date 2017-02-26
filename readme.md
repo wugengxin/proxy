@@ -6,6 +6,7 @@ specific server. The TCP Proxy server can be used to easily and efficiently:
 + Limit the number of client connections to the server
 + Load balance client connections between multiple server instances
 + Provide IP or connection time based filtering and access control mechanisms
++ Inspect (log), filter or otherwise modify data flowing between the clients and the server
 
 
 #### Download
@@ -85,8 +86,8 @@ take the data and register an asynchronous write request with the I/O service in
 order to send the data to the Client end point. Once the write request has
 completed, the I/O service will invoke the **handle_downstream_write** completion
 handler. This handler will complete the cycle for the green phase by re-registering
-a read request coupled with the **handle_upstream_read** method as the
-associated completion handler.
+with the I/O service an asynchronous read request from the upstream end-point coupled
+with the **handle_upstream_read** method as the associated completion handler.
 
 
 ![ScreenShot](http://www.partow.net/images/tcpproxy_state_greenphase_diagram.png?raw=true "TCP Proxy Green Phase Diagram - Copyright Arash Partow")
@@ -100,8 +101,9 @@ in turn take the data and register an asynchronous write request with the I/O
 service in order to send the data to the Remote Server end point. Once the
 write request has been completed, the I/O service will invoke the **handle_upstream_write**
 completion handler. This handler will complete the cycle for the red phase by
-re-registering a read request coupled with the **handle_downstream_read** method
-as the associated completion handler.
+re-registering with the I/O service an asynchronous read request from the
+downstream end-point coupled with the **handle_downstream_read** method as the
+associated completion handler.
 
 
 ![ScreenShot](http://www.partow.net/images/tcpproxy_state_redphase_diagram.png?raw=true "TCP Proxy Red Phase Diagram - Copyright Arash Partow")
