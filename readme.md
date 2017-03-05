@@ -9,6 +9,9 @@ specific server. The TCP Proxy server can be used to easily and efficiently:
 + Inspect (log), filter or otherwise modify data flowing between the clients and the server
 
 
+![ScreenShot](http://www.partow.net/images/tcpproxy_server_diagram.png?raw=true "TCP Proxy Server Diagram - Copyright Arash Partow")
+
+
 #### Download
 http://www.partow.net/programming/tcpproxy/index.html
 
@@ -25,13 +28,18 @@ compilers:
 * IBM XL C/C++ (10.x+)
 
 
+----
+
+
 #### Internals Of The Proxy
 The proxy from an implementation aspect is primarily composed of three
 components named the **Acceptor**, **Session** and the ASIO **I/O Service**
 proactor. The acceptor and session components register with the I/O service
 requests and associated completion handlers (callbacks) for reading and writing
 from socket(s). The state diagram below depicts the the various completion
-handlers and their relationship to the I/O service component.
+handlers and their relationship to the I/O service component. For exposition
+purposes let's assume that the completion handlers and the I/O service component
+are each a unique state in a state machine that represents the TCP proxy.
 
 
 ![ScreenShot](http://www.partow.net/images/tcpproxy_state_diagram.png?raw=true "TCP Proxy State Diagram - Copyright Arash Partow")
